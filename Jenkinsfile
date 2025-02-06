@@ -8,7 +8,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'Jenkins2' 
+                    credentialsId: 'Jenkins3' 
                 ]]) {
                     sh '''
                     echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/KTMachine/autoScale-jenkins.git' 
+                git branch: 'main', url: 'https://github.com/KTMachine/jenkins-autoscale-practice.git' 
             }
         }
         stage('Initialize Terraform') {
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'Jenkins2'
+                    credentialsId: 'Jenkins3'
                 ]]) {
                     sh '''
                     export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
